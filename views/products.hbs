@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список товаров</title>
+    <meta charset="utf-8" />
+
+	
+	<link href="style.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+    <h1>Список товаров</h1>
+    <p><a href="/createuser">Добавить товар</a>
+	<a href="/admin">Назад</a></p>
+    <table>
+        <tr><th>Name</th><th>image</th><th>description</th><th>price</th><th></th></tr>
+        {{#each pricelist}}
+            <tr>
+                <td>{{this.name}}</td>
+                <td>{{this.image}}</td>
+				<td>{{this.description}}</td>
+                <td>{{this.price}}</td>
+                <td>
+                    <a href="/edit/{{this.id}}">Edit</a>|
+                    <form action="deleteuser/{{this.id}}" method="POST" style="display:inline;">
+                        <input type="submit" value="Delete" />
+                    </form>
+                </td>
+            </tr>
+        {{/each}}
+    </table>
+</body>

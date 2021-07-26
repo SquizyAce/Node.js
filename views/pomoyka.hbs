@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang='ru'>
+
+<head>
+    <meta charset='utf-8'>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+    <title>ООО"Билеты.рф</title>
+		</head>
+
+<body>
+ <header>
+ <div class = "theme">
+ </div>
+    <nav class="main-menu">
+	  <ul>
+	    <li><a href="/">Главная</a></li>
+		<li><a href="">Товары</a>
+		    <ul>
+              <li><a href="/1">Рок</a>
+			  </li>
+              <li><a href="/2">Гранж</a>		  
+			  </li>
+              <li><a href="/3">Новинки</a>
+			  </li>
+            </ul>
+		</li>
+		<li><a onclick="exit()"  id="reges" href="">Авторизация</a>
+		   <ul>
+		      <li><a onclick="exit()" href="/login">Войти</a></li>
+			  <li><a onclick="exit()" href="/create">Зарегистрироваться</a></li>
+		   </ul>
+		</li>
+		<li><a href="pomoyka.html">Корзина</a></li>
+	  </ul>
+	</nav>
+ </header>
+{{#each basket}}
+<div class = "pomoyka">
+<div class="item">
+<img src="{{this.image}}">
+<BR><a href="#"></a>
+<BR>Товар: {{this.name}}
+<BR>Цена: {{this.price}}
+<input name="amount" type="number" min="1" max="100" value="{{this.amount}}" class="field" />
+</div>
+<div class = "zakypka">
+<form action="delete/{{this.id}}" method="POST" style="display:inline;">
+<BR><Input type="submit" name="" value="Убрать из корзины">
+</form>
+
+</div>
+</div>
+{{/each}}
+</body>
+</html>
+

@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang='ru'>
+
+<script>
+function show() {
+    document.getElementById('window').style.display = 'block';  
+    document.getElementById('gray').style.display = 'block';        
+    }   
+function hide() {
+    document.getElementById('window').style.display = 'none';   
+    document.getElementById('gray').style.display = 'none';     
+}
+function preventDefault(e) {
+    e.preventDefault();
+    e.stopPropagation();
+}
+function reges() {
+alert( document.cookie );
+}
+function exit() {
+document.cookie ='hash = ';
+}
+</script>
+
+
+<head>
+    <meta charset='utf-8'>
+	<link href="style.css" rel="stylesheet" type="text/css">
+    <title>ООО"Билеты.рф</title>
+		</head>
+
+<body>
+ <header>
+ <div class = "theme">
+ <img src="" alt="">
+ </div>
+    <nav class="main-menu">
+	  <ul>
+	    <li><a href="/" onclick="reges()">{{#each users}}{{this.name}}{{/each}}</a>
+		<ul>
+              <li><a onclick="exit()" href="/">Выход</a>
+			  </li>
+        </ul>
+		</li>
+		<li><a href="">Товары</a>
+		    <ul>
+              <li><a href="/1">Рок</a>
+			  </li>
+              <li><a href="/2">Гранж</a>		  
+			  </li>
+              <li><a href="/3">Новинки</a>
+			  </li>
+            </ul>
+		</li>
+		<li><a onclick="exit()"  id="reges" href="">Авторизация</a>
+		   <ul>
+		      <li><a onclick="exit()" href="/login">Войти</a></li>
+			  <li><a onclick="exit()" href="/create">Зарегистрироваться</a></li>
+		   </ul>
+		</li>
+		<li><a href="/pomoyka">Корзина</a></li>
+	  </ul>
+	</nav>
+ </header>
+<div class = "main">
+
+{{#each pricelist}}
+<form action="add/{{this.id}}" method="POST" class="item">
+<img src={{this.image}}>
+<BR><a href="#">{{this.name}}</a>
+<BR><a href="#">Цена: {{this.price}}</a>
+<div class="control">
+<Input type="submit" name="" value="Добавить в корзину">
+</div>
+</form>
+{{/each}}
+
+<div id="gray" onclick="hide()">
+		<div id="window" onclick="preventDefault(event)">
+		<img  class="close" src="img/close.png" alt="" onclick="hide()">
+		<div class="form">
+			<h2>Регистрация</h2>
+		    <form action="create/" name="f1" method="POST">
+		        <input type="text" name="login" placeholder="Логин" class="input">
+		        <input type="password" name="pas" placeholder="Пароль" class="input">
+		        <input type="submit" onclick="register()" value="Регистрация" name="sab" class="input">
+		    </form>
+		    <h2>Вход</h2>
+		    <form action="index.html" name="f1">
+		        <input type="text" id="login1" placeholder="Логин" class="input">
+		        <input type="password" id="pas1" placeholder="Пароль" class="input">
+		        <input type="submit" onclick="logining()" value="Войти" name="sab" class="input">
+			</form>	
+			<h2>Список пользователей</h2>
+    <p><a href="/create">Добавить пользователя</a></p>
+    <table>
+        <tr><th>Id</th><th>Name</th><th>Age</th><th>Pas</th><th></th></tr>
+        {{#each users}}
+            <tr>
+			    <td>{{this.id}}</td>
+                <td>{{this.name}}</td>
+                <td>{{this.age}}</td>
+				<td>{{this.pas}}</td>
+                <td>
+                    <a href="/edit/{{this.id}}">Edit</a>|
+                    <form action="delete/{{this.id}}" method="POST" style="display:inline;">
+                        <input type="submit" value="Delete" />
+                    </form>
+                </td>
+            </tr>
+        {{/each}}
+    </table>	
+		</div>
+    </div>
+</div>
+	
+ </div>
+</body>
+</html>
